@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pencarian Buku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .book-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Aplikasi Pencarian Buku</h2>
+        <input type="text" id="searchInput" placeholder="Masukkan judul buku...">
+        <button onclick="searchBooks()">Cari</button>
+
+        <div class="results" id="searchResults">
+            <!-- Hasil pencarian buku akan ditampilkan di sini -->
+        </div>
+    </div>
+
+    <script>
+        function searchBooks() {
+            var searchInput = document.getElementById('searchInput').value;
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Kosongkan hasil sebelumnya
+
+            // Contoh data buku (bisa diganti dengan data sesuai kebutuhan)
+            var books = [
+                { title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling' },
+                { title: 'To Kill a Mockingbird', author: 'Harper Lee' },
+                { title: '1984', author: 'George Orwell' },
+                { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' }
+            ];
+
+            // Filter buku sesuai dengan input pencarian
+            var filteredBooks = books.filter(function(book) {
+                return book.title.toLowerCase().includes(searchInput.toLowerCase());
+            });
+
+            // Tampilkan hasil pencarian
+            filteredBooks.forEach(function(book) {
+                var bookDiv = document.createElement('div');
+                bookDiv.classList.add('book-item');
+                bookDiv.textContent = book.title + ' - ' + book.author;
+                resultsContainer.appendChild(bookDiv);
+            });
+        }
+    </script>
+</body>
+</html>
